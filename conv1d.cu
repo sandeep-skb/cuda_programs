@@ -10,7 +10,7 @@ void gpu_conv1d(float *d_out, float *d_in, float *d_filter, int size_in, int siz
 	int offset = size_filter / 2;
 	if (i < size_in){
 		for (int j=0; j < size_filter; j++){
-			if ((i-offset+j) >= 0 && (i - offset + j) = size_in)
+			if ((i-offset+j) >= 0 && (i - offset + j) <= size_in)
 				sum += d_in[i-offset+j]*d_filter[j];
 		}
 		d_out[i] = sum;
@@ -30,7 +30,7 @@ void host_conv1d(float *h_out, float *h_in, float *h_filter, int size_in, int si
 	for (int i =0; i < size_in; i++){
 		float sum = 0.0;
 		for (int j = 0; j < size_filter; j++){
-			if ((i-offset+j) >= 0 && (i - offset + j) = size_in)
+			if ((i-offset+j) >= 0 && (i - offset + j) <= size_in)
 				sum += h_in[i-offset+j]*h_filter[j];
 		}
 		h_out[i] = sum;
