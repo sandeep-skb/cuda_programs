@@ -27,6 +27,7 @@ void cudaError_check(cudaError_t err){
 	if (err != cudaSuccess){
 		printf("GPUassert: %s %s %d\n", cudaGetErrorString(err), __FILE__, __LINE__);
 	}
+	exit(EXIT_FAILURE);
 }
 
 int main(){
