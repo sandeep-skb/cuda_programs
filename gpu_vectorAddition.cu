@@ -72,9 +72,11 @@ int main(){
 	dim3 blockDim  (num_threads_per_block, 1, 1);
 	start = clock();
 	cuda_vec_add<<<gridDim, blockDim>>>(d_a, d_b, d_c, n);
+	err = cudaDeviceSynchronize();
+	stop = clock();
+	cudaError_check(err);
 	err = cudaMemcpy(h_c_cpy, d_c, size, cudaMemcpyDeviceToHost);
 	cudaError_check(err);
-	stop = clock();
 	double gpu_duration = (stop - start) / (double) CLOCKS_PER_SEC;
 //################## CUDA End ###################//
 	int success = 1;
