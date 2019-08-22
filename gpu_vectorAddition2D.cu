@@ -71,7 +71,7 @@ int main(){
 	cudaError_check(err);
 
 	//Kernel invocation
-	int num_threads_per_block = 256;
+	int num_threads_per_block = 32;
 	dim3 gridDim  ((n-1)/num_threads_per_block + 1, (m-1)/num_threads_per_block + 1, 1);
 	dim3 blockDim  (num_threads_per_block, num_threads_per_block, 1);
 	start = clock();
